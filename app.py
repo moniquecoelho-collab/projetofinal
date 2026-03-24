@@ -122,7 +122,7 @@ if uploaded_file:
         df_filtrado = df_filtrado[df_filtrado[col_nasc].dt.month == indice_mes]
 
 # --- 5. DASHBOARD PRINCIPAL ---
-    st.markdown('<h1 class="titulo-dashboard">Dashbohard</h1>', unsafe_allow_html=True)    
+    st.markdown('<h1 class="titulo-dashboard">Dashboard</h1>', unsafe_allow_html=True)    
     
     # Métricas Superiores
     m1, m2, m3, m4 = st.columns(4)
@@ -288,7 +288,7 @@ if uploaded_file:
         if prompt := st.chat_input("Ex: Qual a unidade com mais colaboradores?", key="input_final_lina"):
             # 1. CRIAR O CONTEXTO REAL (O que a Lina deve ler)
             contexto_rh = f"""
-            CVOCÊ É A LINA, ASSISTENTE DE RH DA ALMA PERFUMADA.
+            VOCÊ É A LINA, ASSISTENTE DE RH DA ALMA PERFUMADA.
             DADOS ATUAIS DO DASHBOARD:
             - Total de colaboradores na visualização: {len(df_filtrado)}
             - Unidade filtrada: {sel_unidade}

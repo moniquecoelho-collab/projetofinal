@@ -4,41 +4,38 @@
 }
 
 .titulo-dashboard {
-    color: #1E3A8A !important;    /* Azul Escuro M2 */
-    font-size: 28px !important;    /* Tamanho menor e mais elegante */
+    color: #1E3A8A !important;
+    font-size: 28px !important;
     font-weight: 700 !important;
     padding-bottom: 10px;
-    margin-top: -10px !important; /* Sobe um pouco o título se estiver longe do topo */
+    margin-top: -10px !important;
 }
 
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
-/* Remove o espaço em branco que sobra no topo após esconder o header */
-    .block-container {
-        padding-top: 0rem !important;
-        padding-top: 1rem !important; /* Ajuste aqui se o título ficar 'colado' demais */
-    }
+/* Esconde elementos nativos */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Remove o espaço em branco do topo */
+.block-container {
+    padding-top: 0.5rem !important; /* Ajustado para um respiro mínimo */
+}
 
 /* Media Query para Celulares */
 @media (max-width: 640px) {
-    .metric-value {
-        font-size: 20px !important; /* Diminui o número da métrica no celular */
-    }
-    .titulo-dashboard {
-        font-size: 22px !important; /* Título menor para caber em uma linha */
-    }
-    /* Faz os cards ocuparem a largura total se o Streamlit não empilhar */
+    .metric-value { font-size: 20px !important; }
+    .titulo-dashboard { font-size: 22px !important; }
     [data-testid="column"] {
         width: 100% !important;
         flex: 1 1 100% !important;
+        display: block !important;
+        margin-bottom: 10px;
     }
 }
 
 /* --- SIDEBAR --- */
 [data-testid="stSidebar"] {
-    background-color: #3B82F6 !important; /* Azul Claro M2 */
+    background-color: #3B82F6 !important;
 }
 
 [data-testid="stSidebar"] .stMarkdown h3, 
@@ -46,13 +43,10 @@
     color: white !important;
 }
 
-[data-testid="stSidebarUserContent"] {
-    padding-top: 0rem !important;
-}
-
+/* Ajuste fino da Logo na Sidebar */
 [data-testid="stSidebar"] img {
-    margin-top: -20px !important;
-    margin-bottom: 10px !important;
+    margin-top: -30px !important;    
+    margin-bottom: -30px !important; 
 }
 
 /* --- CARDS DE MÉTRICAS --- */
@@ -61,22 +55,13 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border-top: 4px solid #3B82F6; /* Azul M2 */
+    border-top: 4px solid #3B82F6;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.metric-label { 
-    color: #64748B; 
-    font-size: 13px; 
-    font-weight: bold; 
-}
-
-.metric-value { 
-    color: #3B82F6; 
-    font-size: 28px; 
-    font-weight: bold; 
-}
+.metric-label { color: #64748B; font-size: 13px; font-weight: bold; }
+.metric-value { color: #3B82F6; font-size: 28px; font-weight: bold; }
 
 /* --- FICHA DE TALENTOS --- */
 .detail-box {
@@ -87,42 +72,30 @@
     margin-top: 10px;
 }
 
-/* --- BOTÃO DE UPLOAD E DROPZONE --- */
+/* --- CUSTOMIZAÇÃO DO UPLOADER (DRAG & DROP) --- */
 [data-testid="stFileUploaderSection"] {
     background-color: white !important;
     border: 2px dashed #3B82F6 !important;
     border-radius: 12px !important;
 }
 
+/* Botão Laranja "TRATAR DADOS" */
 [data-testid="stFileUploaderDropzone"] button {
-    background-color: #F97316 !important; /* Laranja M2 */
+    font-size: 0px !important; /* Esconde o texto original */
+    background-color: #F97316 !important;
     color: white !important;
-    border: none !important;
     border-radius: 8px !important;
+    padding: 8px 15px !important;
+    border: none !important;
 }
-
-/* 3. MUDA O TEXTO DO BOTÃO 'Browse files' */
 
 [data-testid="stFileUploaderDropzone"] button::before {
     content: "TRATAR DADOS";
     font-size: 14px;
+    font-weight: bold;
 }
 
-[data-testid="stFileUploaderDropzone"] button {
-    font-size: 0px !important;
-    background-color: #F97316 !important; /* Laranja M2 */
-    color: white !important;
-    border-radius: 8px !important;
-    padding: 5px 10px !important;
-}
-
-/* Reduz a margem interna da logo para ela subir mais */
-[data-testid="stSidebar"] img {
-    margin-top: -30px !important;    /* Controla o espaço ACIMA da logo */
-    margin-bottom: -30px !important; /* Controla o espaço ENTRE a logo e o Uploader */
-}
-
-/* Customização de textos do Uploader */
+/* Textos de apoio do Uploader */
 [data-testid="stFileUploaderDropzone"] div div::before {
     content: "Arraste o arquivo aqui";
     font-size: 16px;
@@ -135,7 +108,6 @@
     color: #64748B;
 }
 
-/* Esconde textos originais do Streamlit para aplicar os customizados */
 [data-testid="stFileUploaderDropzone"] div div, 
 [data-testid="stFileUploaderDropzone"] small {
     font-size: 0px !important;
