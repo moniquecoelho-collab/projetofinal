@@ -287,18 +287,22 @@ if uploaded_file:
         # Input de texto centralizado
         if prompt := st.chat_input("Ex: Qual a unidade com mais colaboradores?", key="input_final_lina"):
             # 1. CRIAR O CONTEXTO REAL (O que a Lina deve ler)
+            amostra_dados = df_filtrado[[col_nome, col_setor, col_cargo, col_nasc]].head(30).to_json(orient='records')
+
             contexto_rh = f"""
-            VOCÊ É A LINA, ASSISTENTE DE RH DA ALMA PERFUMADA.
-            DADOS ATUAIS DO DASHBOARD:
-            - Total de colaboradores na visualização: {len(df_filtrado)}
-            - Unidade filtrada: {sel_unidade}
-            - Cargo filtrado: {sel_cargo}
-            - Média de idade: {val_media} anos.
+            VOCÊ É A LINA, ANALISTA DE RH DA ALMA PERFUMADA.
+            Sua base de dados atual contém {len(df_filtrado)} registros.
 
-            IMPORTANTE: Responda APENAS com base nestes números ou no seu conhecimento de RH. 
-            Se não souber, diga que não tem acesso a essa parte da planilha.
+            DADOS REAIS PARA CONSULTA (JSON):
+            {amostra_dados}
 
-            Pergunta do usuário: {prompt}
+            INSTRUÇÕES:
+            1. Use os dados acima para responder perguntas específicas sobre nomes, datas e setores.
+            2. Se a pergunta for sobre totais, considere que o total no dashboard é {len(df_filtrado)}.
+            3. Mês atual: {datetime.now().strftime('%B')}.
+            4. Se a informação não estiver no JSON acima, responda com base na sua experiência geral de RH, mas avise que não localizou o dado exato na planilha.
+
+            Pergunta: {prompt}
             """
             
             st.session_state.messages.append({"role": "user", "content": prompt})
