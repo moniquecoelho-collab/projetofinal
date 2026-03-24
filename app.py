@@ -14,7 +14,7 @@ def local_css(file_name):
 local_css("style.css")
 
 # --- 1. CONFIGURAÇÕES  ---
-st.set_page_config(page_title="Alma Perfumada", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Alma Perfumada", layout="wide", initial_sidebar_state="expanded")
 
 # --- INICIALIZAÇÃO DA LINA ---
 if "messages" not in st.session_state:
