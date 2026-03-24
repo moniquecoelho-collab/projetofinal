@@ -49,6 +49,23 @@ header {visibility: hidden;}
     margin-bottom: -30px !important; 
 }
 
+/* --- DESTAQUE DA SETINHA DA SIDEBAR (MOBILE) --- */
+
+/* Altera a cor do ícone da setinha para Azul Escuro M2 */
+[data-testid="stSidebarCollapsedControl"] svg {
+    color: #1E3A8A !important;
+    fill: #1E3A8A !important;
+}
+
+/* Adiciona um fundo leve e borda para a setinha não sumir no branco */
+[data-testid="stSidebarCollapsedControl"] {
+    background-color: rgba(59, 130, 246, 0.1) !important; /* Azul Claro M2 com transparência */
+    border-radius: 0 8px 8px 0 !important;
+    padding: 5px !important;
+    left: 0 !important;
+    top: 10px !important; /* Ajusta a altura dela no topo */
+}
+
 /* --- CARDS DE MÉTRICAS --- */
 .metric-card {
     background-color: white;
