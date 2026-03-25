@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import requests
+import pytz
 from datetime import datetime
 from processador import tratar_base_rh
 
@@ -23,6 +24,7 @@ if "messages" not in st.session_state:
 # Definição da URL e Token (Coloque aqui no topo para não dar erro de conexão)
 API_URL = "https://cloud.flowiseai.com/api/v1/prediction/7aed7671-8c9e-4cc8-839a-5b4f43d207fc"
 API_TOKEN = st.secrets["LINA_TOKEN"]
+
 
 M2_AZUL_ESCURO = "#1E3A8A"
 M2_AZUL_CLARO = "#3B82F6"
@@ -106,7 +108,8 @@ if uploaded_file:
     df_filtrado = df.copy()
 
     # --- LÓGICA DE ANIVERSARIANTES (SEGURA) ---
-    hoje = datetime.now()
+    fuso_br = pytz.timezone('America/Sao_Paulo')
+    hoje = datetime.now(fuso_br)
     dia_mes_hoje = hoje.strftime('%d/%m')
     mes_atual = hoje.month
 
@@ -142,7 +145,8 @@ if uploaded_file:
 
 # --- 5. DASHBOARD PRINCIPAL ---
     st.markdown('<h1 class="titulo-dashboard">Dashboard</h1>', unsafe_allow_html=True)    
-    
+    st.write(f"🕒 **Horário do Servidor (Brasília):** {hoje.strftime('%d/%m/%Y %H:%M:%S')}")
+
     # Métricas Superiores
     m1, m2, m3, m4 = st.columns(4)
     with m1:
